@@ -4,7 +4,7 @@ import numpy as np
 import time
 
 # get list of coins
-ncores = 8
+ncores = 50
 totcoins = 10 # number of coins you would like
 ndenom = 3 # number of coin denominations
 coins = np.arange(1,totcoins+1)
@@ -54,15 +54,24 @@ pool.join()
 argmin = np.argmin(results)
 comboi, minchangecombo = indices[argmin], results[argmin]
 elapsed = time.time() - start
+
+print
 print "Parallel Elapsed: %3.2f minutes" % (elapsed/60.)
+print "-- combination:",parallel_getminchange(comboi,combo, totcoins)
+
+combos = itertools.combinations(coins,ndenom)
 
 minchangecombo =100
 start = time.time()
 for i, combo in enumerate(combos):
+    #print("At {0} {1}".format(i, combo))
     changecombo_i = serial_getminchange(combo,totcoins)
     if changecombo_i < minchangecombo:
         minchangecombo = changecombo_i
         comboi = combo
 
 elapsed = time.time() - start
+
+print 
 print "Serial Elapsed: %3.2f minutes" % (elapsed/60.)
+print "-- combination:",parallel_getminchange(comboi,combo, totcoins)
