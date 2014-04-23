@@ -3,10 +3,10 @@ import numpy as np
 import time
 
 # get list of coins
-coins = np.arange(1,101)
+coins = np.arange(1,10)
 
 # create combinations
-combos = itertools.combinations(coins,10)
+combos = itertools.combinations(coins,3)
 
 def getminchange(V, C):
     m, n = len(V)+1, C+1
@@ -29,7 +29,11 @@ for combo in combos:
     if changecombo_i < minchangecombo:
         minchangecombo = changecombo_i
         comboi = combo
+        print "Combination:",comboi
+        print "Sum:",sum(np.array(comboi))
 
 elapsed = time.time() - start
+print
 print "Found minimum combos: %3.2f hours" % (elapsed/3600.)
 print "Best combination:",comboi
+print "Best combination sum:",sum(np.array(comboi))
