@@ -6,10 +6,7 @@ import time
 coins = np.arange(1,101)
 
 # create combinations
-start = time.time()
 combos = itertools.combinations(coins,10)
-elapsed = time.time() - start
-print "Generated combos: %3.2f seconds" % (elapsed/3600.)
 
 def getminchange(V, C):
     m, n = len(V)+1, C+1
