@@ -6,7 +6,10 @@ import time
 coins = np.arange(1,101)
 
 # create combinations
+start = time.clock()
 combos = itertools.combinations(coins,10)
+elapsed = time.time() - start
+print "Generated combos: %3.2f seconds" % (elapsed/3600.)
 
 def getminchange(V, C):
     m, n = len(V)+1, C+1
@@ -24,11 +27,12 @@ totcoins = 100
 start = time.clock()
 
 minchangecombo = 100
-for i,combo in enumerate(combos):
+for combo in combos:
     changecombo_i = getminchange(combo,totcoins)
     if changecombo_i < minchangecombo:
         minchangecombo = changecombo_i
         comboi = combo
 
 elapsed = time.time() - start
-print "Elasped: %3.2f hours" % (elapsed/3600.)
+print "Found minimum combos: %3.2f hours" % (elapsed/3600.)
+print "Best combination:",comboi
