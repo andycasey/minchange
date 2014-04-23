@@ -1,0 +1,4 @@
+minchange
+=========
+
+Minimum change algorithm.
